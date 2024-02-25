@@ -16,12 +16,18 @@ public class MultiThreadsConsumer {
 
   private static final int TOTAL_EVENTS = 200000;
   private static final BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
-  private static String ipAddress = "35.164.255.136:8080";
+  private static String ipAddress = "35.89.241.180:8080";
   private static AtomicInteger cntSuccessPosts;
   private static AtomicInteger cntFailPosts;
   private static ConcurrentLinkedQueue<RequestMetric> metricsQueue = new ConcurrentLinkedQueue<>();
 
+  private static final ConcurrentMap<Long, AtomicInteger> requestCountsPerSecond = new ConcurrentHashMap<>();
+
   public static final String CSV_FILE_PATH = "requestMetric.csv";
+
+  public static void recordRequestTimestamp(long timestampInSeconds) {
+    requestCountsPerSecond.computeIfAbsent(timestampInSeconds, k -> new AtomicInteger(0)).incrementAndGet();
+  }
 
 
 
@@ -62,6 +68,7 @@ public class MultiThreadsConsumer {
     System.out.println("Number of fail requests: "+ cntFailPosts.get());
     System.out.println("Wall Time: "+wallTime);
 
+    CSVWriter.writeRequestsPerSecondToCsv("requestsPerSecond.csv", requestCountsPerSecond);
 
     List<Long> latencies = new ArrayList<>();
     for (RequestMetric r: metricsQueue) {
