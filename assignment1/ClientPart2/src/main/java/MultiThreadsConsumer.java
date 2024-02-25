@@ -16,7 +16,7 @@ public class MultiThreadsConsumer {
 
   private static final int TOTAL_EVENTS = 200000;
   private static final BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
-  private static String ipAddress = "35.89.241.180:8080";
+  private static String ipAddress = "35.88.118.158:8080";
   private static AtomicInteger cntSuccessPosts;
   private static AtomicInteger cntFailPosts;
   private static ConcurrentLinkedQueue<RequestMetric> metricsQueue = new ConcurrentLinkedQueue<>();
