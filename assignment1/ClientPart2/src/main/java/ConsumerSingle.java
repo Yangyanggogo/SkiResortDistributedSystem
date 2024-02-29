@@ -46,8 +46,9 @@ public class ConsumerSingle implements Runnable {
   @Override
   public void run() {
 
-//    String path = "http://" + this.ipAddress + "/Server_war";
-    String path = "http://" + this.ipAddress + "/Server_war1";
+    //String path = "http://" + this.ipAddress + "/Server_war";
+    //String path = "http://" + this.ipAddress ;
+     String path = "http://" + this.ipAddress + "/Server_war1";
     ApiClient apiClient = new ApiClient();
     apiClient.setBasePath(path);
     SkiersApi skiersApi = new SkiersApi(apiClient);

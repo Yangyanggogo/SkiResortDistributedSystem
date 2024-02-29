@@ -16,7 +16,7 @@ public class MultiThreadsConsumer {
 
   private static final int TOTAL_EVENTS = 200000;
   private static final BlockingQueue<Event> eventQueue = new LinkedBlockingQueue<>();
-  private static String ipAddress = "35.88.118.158:8080";
+  private static String ipAddress = "34.213.54.44:8080";
   private static AtomicInteger cntSuccessPosts;
   private static AtomicInteger cntFailPosts;
   private static ConcurrentLinkedQueue<RequestMetric> metricsQueue = new ConcurrentLinkedQueue<>();
@@ -82,7 +82,7 @@ public class MultiThreadsConsumer {
     System.out.println("Min latency= "+ min(latencies));
     System.out.println("Max latency= "+ max(latencies));
 
-    CSVWriter.writeMetricsToCsv(CSV_FILE_PATH, metricsQueue);
+    //CSVWriter.writeMetricsToCsv(CSV_FILE_PATH, metricsQueue);
     System.out.println("-------------------------------------");
     System.out.println("Multi threads consumer test end");
     System.out.println("-------------------------------------");
