@@ -54,7 +54,7 @@ public class MultiThreadsConsumer {
     }
     latch2.await();
     executor.shutdown();
-    executor.awaitTermination(1, TimeUnit.HOURS);
+    executor.awaitTermination(10, TimeUnit.SECONDS);
 
     long end = System.currentTimeMillis();
     long wallTime = end-start;
