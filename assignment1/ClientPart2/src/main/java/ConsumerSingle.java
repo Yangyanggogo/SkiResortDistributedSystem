@@ -46,8 +46,9 @@ public class ConsumerSingle implements Runnable {
   @Override
   public void run() {
 
-//    String path = "http://" + this.ipAddress + "/Server_war";
-    String path = "http://" + this.ipAddress + "/Server_war";
+    //String path = "http://" + this.ipAddress + "/Server_war";
+    //String path = "http://" + this.ipAddress ;
+     String path = "http://" + this.ipAddress + "/Server_war1";
     ApiClient apiClient = new ApiClient();
     apiClient.setBasePath(path);
     SkiersApi skiersApi = new SkiersApi(apiClient);
@@ -112,6 +113,7 @@ public class ConsumerSingle implements Runnable {
     int tried = 0;
     boolean success = false;
     long startTime = System.currentTimeMillis(); // Capture start time
+    long timeForThp = startTime/1000;
 
     while (tried < RETRY && !success) {
       try {
@@ -122,6 +124,7 @@ public class ConsumerSingle implements Runnable {
         long endTime = System.currentTimeMillis(); // Capture end time
         long latency = endTime - startTime; // Calculate latency
         int responseCode = apiResponse.getStatusCode();
+        MultiThreadsConsumer.recordRequestTimestamp(timeForThp);
 
         // Record the metric
         metricsQueue.offer(new RequestMetric(startTime, latency, responseCode));

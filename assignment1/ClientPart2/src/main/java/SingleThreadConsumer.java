@@ -12,7 +12,7 @@ public class SingleThreadConsumer {
   private static AtomicInteger cntFailPosts;
   private static CountDownLatch latch;
 
-  private static String ipAddress = "54.202.159.223:8080";
+  private static String ipAddress = "34.219.198.181:8080";
   private static ConcurrentLinkedQueue<RequestMetric> metricsQueue = new ConcurrentLinkedQueue<>();
 
 

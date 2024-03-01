@@ -1,5 +1,6 @@
 import Model.LiftRide;
 import Model.Message;
+import Model.Constant;
 import com.google.gson.Gson;
 import java.io.PrintWriter;
 import javax.servlet.*;
@@ -105,23 +106,33 @@ public class SkierServlet extends HttpServlet {
     *
      * @return
      */
-  private boolean validURL(String[] urls) {
-      if (urls.length == 8) {
-        if (!urls[2].equals("seasons") || !urls[4].equals("days") || !urls[6].equals("skiers")) {
-          return false;
-        }
-        try {
-          for (int i = 1; i < 8; i += 2) {
-            Integer.parseInt(urls[i]);
-          }
-          return true;
-        } catch (Exception e) {
-          return false;
-        }
-      }
-      return false;
+   private boolean validURL(String[] urls) {
+     if (urls.length == 8) {
+       if (!urls[2].equals("seasons") || !urls[4].equals("days") || !urls[6].equals("skiers")) {
+         return false;
+       }
+       else if (!urls[1].chars().allMatch(Character::isDigit) || !urls[3].chars().allMatch(Character::isDigit) ||!urls[5].chars().allMatch(Character::isDigit)
+           || !urls[7].chars().allMatch(Character::isDigit)) {
+         return false;
+       }
 
-  }
+       else if (Integer.parseInt(urls[1])< Constant.RESORT_ID_BEGIN|| Integer.parseInt(urls[1])>Constant.RESORT_ID_END || urls[3]!=Constant.SEASON_ID||
+           urls[5]!= Constant.DAY_ID || Integer.parseInt(urls[7])<Constant.SKIER_ID_BEGIN ||Integer.parseInt(urls[7])>Constant.SKIER_ID_END){
+         return false;
+       }
+
+       try {
+         for (int i = 1; i < 8; i += 2) {
+           Integer.parseInt(urls[i]);
+         }
+         return true;
+       } catch (Exception e) {
+         return false;
+       }
+     }
+     return false;
+
+   }
 
 
 
