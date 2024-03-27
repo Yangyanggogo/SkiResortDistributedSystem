@@ -1,11 +1,15 @@
 .idea/
 .DS_Store
 assignment1
-assignment2/.idea/
-assignment2/ClientPart2/.idea/
-assignment2/Consumer/.idea/
-assignment2/Server2/.idea/
-assignment2/.DS_Store
+assignment2
+assignment3/.idea/
+assignment3/ClientPart2/.idea/
+assignment3/Consumer2/.idea/
+assignment3/Server2/.idea/
+assignment3/ClientPart2/.DS_Store
+assignment3/Consumer_redis/.idea/
+assignment3/Server3/.idea/
+assignment3/.DS_Store
  
  
 
